@@ -22,7 +22,16 @@ public class UsersApi {
         JsonNode node = mapper.readTree(response.getBody().asString());
 
         node.forEach(user -> {
-            System.out.println(user.get("address").get("geo"));
+            System.out.println("=========================");
+            System.out.println("Address: ");
+            JsonNode address = null;
+            address = user.get("address");
+
+            address.forEach(property -> {
+                System.out.println("Street: " + property.get("street"));
+                System.out.println("City: " + property.get("city"));
+            });
+            System.out.println("=========================");
         });
     }
 }
